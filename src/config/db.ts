@@ -1,5 +1,6 @@
-import { Db, MongoClient } from "mongodb";
+import { Db, MongoClient, ObjectId } from "mongodb";
 import dotenv from "dotenv";
+import { Customer } from "../types/customerType";
 dotenv.config();
 
 const MONGO_URI:string = `${process.env.MONGO_URI}`;
@@ -33,8 +34,30 @@ export async function findCustomers() {
 }
 
 
-export async function addCustomer() {
+export async function insertCustomer(customer:Customer) {
     const db = await connectMongo();
 
-    await db.collection("customers").insertOne({});
+    const result = await db.collection("customers").insertOne(customer);
+    
+    return result;
+}
+
+
+export async function updateCustomer(id:string, customer:Customer) {
+    const objectId = ObjectId.createFromHexString(id);
+    const db = await connectMongo();
+
+    const result = await db.collection("customers").updateOne({_id:objectId}, {$set:customer});
+
+    return result;
+}
+
+
+export async function deleteCustomer(id:string) {
+    const objectId = ObjectId.createFromHexString(id);
+    const db = await connectMongo();
+
+    const result = await db.collection("customers").deleteOne({_id:objectId});
+
+    return result;
 }

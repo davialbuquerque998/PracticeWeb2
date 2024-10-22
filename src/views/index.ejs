@@ -22,5 +22,11 @@
 </head>
 <body>
     <h1>There are <%= customers.length %> customers registered</h1>
+    <ul>
+        <% customers.forEach((customer) =>{ %>
+            <li><%= customer.name %> <%= customer.email %> <%= customer.age %></li>
+        <% }) %>
+
+    </ul>
 </body>
 </html>
