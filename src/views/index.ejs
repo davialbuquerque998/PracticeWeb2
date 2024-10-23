@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title><%= title %></title>
     <style>
         * {
             margin: 0;
@@ -60,10 +60,36 @@
         .add-customer-link:hover {
             background-color: #45a049;
         }
+
+        /* New styles for action links */
+        .action-links a {
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-right: 5px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .edit-link {
+            background-color: #2196F3;
+        }
+
+        .edit-link:hover {
+            background-color: #1976D2;
+        }
+
+        .delete-link {
+            background-color: #f44336;
+        }
+
+        .delete-link:hover {
+            background-color: #d32f2f;
+        }
     </style>
 </head>
 <body>
-    <h1>There are <%= customers.length %> customers registered</h1>
+    <h1>There are <%= customers.length %> customers registered.</h1>
     <table>
         <thead>
             <tr>
@@ -71,6 +97,7 @@
                 <th>Email</th>
                 <th>Age</th>
                 <th>Province</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -80,6 +107,10 @@
                     <td><%= customer.email %></td>
                     <td><%= customer.age %></td>
                     <td><%= customer.province %></td>
+                    <td class="action-links">
+                        <a href="/customers/edit/<%= customer._id %>" class="edit-link" title="edit">Edit</a>
+                        <a href="/customers/delete/<%= customer._id %>" class="delete-link" title="delete">Delete</a>
+                    </td>
                 </tr>
             <% }) %>
         </tbody>

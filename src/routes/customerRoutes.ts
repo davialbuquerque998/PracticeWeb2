@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { deleteCustomer, findCustomers, insertCustomer, updateCustomer } from "../config/db";
+import { deleteCustomer, findCustomers, insertCustomer, updateCustomer, findCustomer } from "../config/db";
 import { Customer } from "../types/customerType";
 
 const customerRouter = Router();
@@ -27,13 +27,26 @@ customerRouter.get("/", async (req:Request, res:Response) => {
 
     console.log(customers);
 
-    res.render("index", {customers});
+    res.render("index", {customers, title:"All customers"});
     return;
 });
 
 customerRouter.get("/new", async (req:Request, res:Response) => {
-    res.render("customer", {});
+    const {name, age, email, province, id} = req.body;
+
+
+    res.render("customer", {title:"Add New Customer", customer:{}});
     return
+});
+
+customerRouter.get("/edit/:id", async (req:Request, res:Response) => {
+    const id = req.params.id as string;
+
+    const customer = await findCustomer(id);
+
+    console.log(customer,id);
+
+    res.render("customer", {title:"Edit Customer", customer});
 })
 
 customerRouter.post("/", async (req:Request, res:Response) => {

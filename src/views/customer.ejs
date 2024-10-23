@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Customer</title>
+    <title><%= title %></title>
     <style>
         * {
             margin: 0;
@@ -86,42 +86,43 @@
 </head>
 <body>
     <div class="container">
-        <h1>Add New Customer</h1>
+        <h1><%= title %></h1>
         <form action="/customers" method="POST">
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" value="<%= customer.name %>" id="name" name="name" required>
             </div>
             
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" value="<%= customer.email %>" id="email" name="email" required>
             </div>
 
             <div class="form-group">
                 <label for="age">Age:</label>
-                <input type="number" id="age" name="age" min="0" max="120" required>
+                <input type="number" value="<%= customer.age %>" id="age" name="age" min="0" max="120" required>
             </div>
 
             <div class="form-group">
                 <label for="province">Province:</label>
                 <select id="province" name="province" required>
                     <option value="">Select a province</option>
-                    <option value="AB">Alberta (AB)</option>
-                    <option value="BC">British Columbia (BC)</option>
-                    <option value="MB">Manitoba (MB)</option>
-                    <option value="NB">New Brunswick (NB)</option>
-                    <option value="NL">Newfoundland and Labrador (NL)</option>
-                    <option value="NS">Nova Scotia (NS)</option>
-                    <option value="NT">Northwest Territories (NT)</option>
-                    <option value="NU">Nunavut (NU)</option>
-                    <option value="ON">Ontario (ON)</option>
-                    <option value="PE">Prince Edward Island (PE)</option>
-                    <option value="QC">Quebec (QC)</option>
-                    <option value="SK">Saskatchewan (SK)</option>
-                    <option value="YT">Yukon (YT)</option>
+                    <option value="AB" <%= customer.province === 'AB' ? 'selected' : '' %>>Alberta (AB)</option>
+                    <option value="BC" <%= customer.province === 'BC' ? 'selected' : '' %>>British Columbia (BC)</option>
+                    <option value="MB" <%= customer.province === 'MB' ? 'selected' : '' %>>Manitoba (MB)</option>
+                    <option value="NB" <%= customer.province === 'NB' ? 'selected' : '' %>>New Brunswick (NB)</option>
+                    <option value="NL" <%= customer.province === 'NL' ? 'selected' : '' %>>Newfoundland and Labrador (NL)</option>
+                    <option value="NS" <%= customer.province === 'NS' ? 'selected' : '' %>>Nova Scotia (NS)</option>
+                    <option value="NT" <%= customer.province === 'NT' ? 'selected' : '' %>>Northwest Territories (NT)</option>
+                    <option value="NU" <%= customer.province === 'NU' ? 'selected' : '' %>>Nunavut (NU)</option>
+                    <option value="ON" <%= customer.province === 'ON' ? 'selected' : '' %>>Ontario (ON)</option>
+                    <option value="PE" <%= customer.province === 'PE' ? 'selected' : '' %>>Prince Edward Island (PE)</option>
+                    <option value="QC" <%= customer.province === 'QC' ? 'selected' : '' %>>Quebec (QC)</option>
+                    <option value="SK" <%= customer.province === 'SK' ? 'selected' : '' %>>Saskatchewan (SK)</option>
+                    <option value="YT" <%= customer.province === 'YT' ? 'selected' : '' %>>Yukon (YT)</option>
                 </select>
             </div>
+            
 
             <button type="submit">Add Customer</button>
         </form>

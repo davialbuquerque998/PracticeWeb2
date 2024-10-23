@@ -33,6 +33,16 @@ export async function findCustomers() {
     return customers;
 }
 
+export async function findCustomer(id:string) {
+    const objectId = ObjectId.createFromHexString(id);
+    const db = await connectMongo();
+    
+    const customer = db.collection("customers").findOne({_id:objectId});
+
+    return customer;
+}
+
+
 
 export async function insertCustomer(customer:Customer) {
     const db = await connectMongo();
