@@ -1,5 +1,6 @@
 export type Customer = {
     name:string,
-    age:number
-    region:string, 
+    email:string,
+    age:number,
+    province:string, 
 }

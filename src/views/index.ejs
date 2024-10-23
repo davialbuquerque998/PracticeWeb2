@@ -5,28 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        h1{
-            background-color: green;
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
         }
 
-        h2{
-            background-color: blue;
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .add-customer-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .add-customer-link:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <h1>There are <%= customers.length %> customers registered</h1>
-    <ul>
-        <% customers.forEach((customer) =>{ %>
-            <li><%= customer.name %> <%= customer.email %> <%= customer.age %></li>
-        <% }) %>
-
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Province</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% customers.forEach((customer) =>{ %>
+                <tr>
+                    <td><%= customer.name %></td>
+                    <td><%= customer.email %></td>
+                    <td><%= customer.age %></td>
+                    <td><%= customer.province %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <a href="/customers/new" class="add-customer-link">Add New Customer</a>
 </body>
 </html>

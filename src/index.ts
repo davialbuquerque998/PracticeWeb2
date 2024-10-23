@@ -16,13 +16,14 @@ app.set('view engine', 'ejs');
 // Set the directory for the views
 app.set('views', path.join(__dirname, 'views'));
 
+
 // Middlewares
 app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
 // Serve static files from a public directory (optional, for CSS, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.urlencoded({ extended: true }));
 app.use("/customers", customerRouter);
 
 app.listen(PORT, ()=>{
