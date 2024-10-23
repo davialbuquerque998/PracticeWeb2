@@ -32,9 +32,6 @@ customerRouter.get("/", async (req:Request, res:Response) => {
 });
 
 customerRouter.get("/new", async (req:Request, res:Response) => {
-    const {name, age, email, province, id} = req.body;
-
-
     res.render("customer", {title:"Add New Customer", customer:{}});
     return
 });
