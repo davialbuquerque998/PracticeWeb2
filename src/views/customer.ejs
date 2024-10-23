@@ -123,8 +123,16 @@
                 </select>
             </div>
             
+            <div>
+                <input type="hidden" name="id" value="<%= customer._id %>">
+            </div>
 
-            <button type="submit">Add Customer</button>
+            <% if (customer._id) { %>
+                <button type="submit">Update Customer</button>
+            <% } else { %>
+                <button type="submit">Add Customer</button>
+            <% } %>
+            
         </form>
         <a href="/customers" class="back-link">← Back to Customer List</a>
     </div>
