@@ -5,20 +5,23 @@ dotenv.config();
 
 const MONGO_URI:string = `${process.env.MONGO_URI}`;
 
-let singleton:Db;
+let singleton:any;
 
 
 export async function connectMongo():Promise<Db> {
     if(singleton) return singleton;
 
     const client:MongoClient = new MongoClient(MONGO_URI);
-    await client.connect();
+   
 
-    
-
-    singleton = client.db("test");
-
-    console.log("Connected!");
+    try {
+        await client.connect();
+        singleton = client.db("test");
+        console.log("Connected!");
+    } catch (error) {
+        console.error(error);
+        singleton = null;
+    }
 
     return singleton;
 
